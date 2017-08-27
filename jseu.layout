@@ -1,0 +1,139 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass[jseu]{journal of seu}
+
+# Read the definitions from book.layout
+Input article.layout 
+
+NoStyle Abstract
+NoStyle LyX-Code
+NoStyle Address
+NoStyle Right_Address
+NoStyle Date
+
+Style Author
+  LabelType Static
+  Font 
+    Color   Blue
+    Size    Normal 
+  EndFont  
+  LabelFont
+    Color   Red
+    Series  Bold
+    Size    Normal
+  EndFont
+  TopSep    0.1
+  BottomSep 0.2
+  LabelString   "作者:"
+End
+
+Style 作者(英文)
+  CopyStyle    "Author"
+  LatexName   enauthor
+  LabelString   "作者(英文):"
+End
+
+Style Title
+  Font  
+    Size    Larger 
+    Color   Blue
+  EndFont   
+End
+
+Style 标题(英文)  
+  CopyStyle    "Title"
+  Font 
+    Color   Magenta
+    Size    Large 
+  EndFont  
+  LabelFont
+    Color   Magenta
+    Series  Bold
+    Size    Large
+  EndFont  
+  LatexName   entitle
+  LabelString   "标题(英文):"
+End
+
+Style 单位
+  CopyStyle   "Author"
+  LatexName   affiliation
+  LabelType Static
+  LabelString   "单位:"
+End
+
+Style 单位(英文)
+  CopyStyle   "Author"
+  LatexName   enaffiliation
+  LabelType  Static
+  LabelString   "单位(英文):"
+End
+
+Style 摘要
+  CopyStyle   "Author"
+  LatexName abstractcn
+  Align   Block
+  Margin    Dynamic
+  LabelType Static
+  LabelString "中文摘要:"
+End
+
+Style 摘要(英文)
+  CopyStyle   "Author"
+  LatexName abstracten
+  Align   Block
+  Margin    Dynamic
+  LabelType Static
+  LabelString "英文摘要:"
+End
+
+Style 关键词
+  CopyStyle   "Author"
+  LatexName keywordcn
+  Align   Block
+  Margin    Dynamic
+  LabelType Static
+  LabelString "中文关键词:"
+End
+
+Style 关键词(英文)
+  CopyStyle   "Author"
+  LatexName keyworden
+  Align   Block
+  Margin    Dynamic
+  LabelType Static
+  LabelString "英文关键词:"
+End
+
+Style 基金项目
+  CopyStyle   "Author"
+  LatexName   foundation
+  Margin    Dynamic
+  Align   Block
+  LabelType Static
+  LabelString   "基金项目:"
+End
+
+Style 作者简介
+  CopyStyle   "Author"
+  Align   Block
+  Margin    Dynamic
+  LatexName authorintro
+  LabelString "作者简介:" 
+End
+
+Style 中图分类号
+  CopyStyle   "Author"
+  Align   Block
+  Margin    Dynamic
+  LatexName catnum
+  LabelString "中图分类号:" 
+End
+ 
+Style 文献标识码
+	CopyStyle   "Author"
+  Align   Block
+  Margin    Dynamic 
+	LatexName	papercode
+  LabelString	"文献标识码:"
+End
+
