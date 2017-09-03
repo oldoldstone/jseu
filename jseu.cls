@@ -40,8 +40,7 @@
 \def \@keyworden {}
 \def \@catnum {}  %分类号
 \def \@papercode{}  %文献标识码
-\newcommand{\affiliation}[1]{\def \@affiliation {#1}}
-\newcommand{\entitle}[1]{\def \@entitle {#1}}
+\newcommand{\affiliation}[1]{\def \@affiliation {#1}} 
 \newcommand{\enauthor}[1]{\def \@enauthor{#1}}
 \newcommand{\enaffiliation}[1]{\def \@enaffiliation {#1}}
 \newcommand{\foundation}[1]{\def \@foundation {#1}}
@@ -52,7 +51,16 @@
 \newcommand{\keyworden}[1]{\def \@keyworden {#1}}
 \newcommand{\catnum}[1]{\def \@catnum {#1}}
 \newcommand{\papercode}[1]{\def \@papercode {#1}}
-
+\newcommand{\@titlelen}{\textwidth}
+\renewcommand{\title}[2][\textwidth]{
+  \renewcommand{\@titlelen}{#1}
+  \renewcommand{\@title}{#2}
+}
+\newcommand{\@entitlelen}{\textwidth}
+\newcommand{\entitle}[2][\textwidth]{
+  \renewcommand{\@entitlelen}{#1}
+  \renewcommand{\@entitle}{#2}
+}
 % ----------------------------- 其他命令 --------------------------------$
 \usepackage{datetime} %英文月份转换
 % ----------------------------- 页面基本设置  --------------------------------$
@@ -64,7 +72,7 @@
 \premulticols = 20pt %页面分栏最小高度
 \setlength\columnsep{20pt}  %分栏间距
 %行距，缩进设置
-%\RequirePackage{setspace}
+\RequirePackage[nodisplayskipstretch]{setspace}
 \renewcommand{\baselinestretch}{1.3} %1.3倍行距
 \RequirePackage{indentfirst} %首行缩进
 \setlength{\parindent}{2em} %缩进两个中文字符
@@ -90,10 +98,11 @@
 \newcommand{\eight}{\fontsize{8.5pt}{\baselineskip}\selectfont}
 \newcommand{\nine}{\fontsize{9pt}{\baselineskip}\selectfont}
 \newcommand{\ten}{\fontsize{10.5pt}{\baselineskip}\selectfont}
-\newcommand{\eleven}{\fontsize{11pt}{\baselineskip}\selectfont}
+\newcommand{\eleven}{\fontsize{11.5pt}{\baselineskip}\selectfont}
+\newcommand{\twelve}{\fontsize{12pt}{\baselineskip}\selectfont}
 \newcommand{\thirty}{\fontsize{13pt}{\baselineskip}\selectfont}
-\newcommand{\fourteen}{\fontsize{14pt}{\baselineskip}\selectfont}
-\newcommand{\nineteen}{\fontsize{19pt}{\baselineskip}\selectfont}
+\newcommand{\fourteen}{\fontsize{14.5pt}{\baselineskip}\selectfont}
+\newcommand{\nineteen}{\fontsize{19.5pt}{\baselineskip}\selectfont}
 
 % ----------------------------- 定义页眉页脚   --------------------------------$
 \RequirePackage{fancyhdr}
@@ -140,9 +149,12 @@
 \captionsetup[figure]{labelformat=mylabel,textfont=mycaption,name=\jseu@figname,labelsep=quad}
 \captionsetup[table]{labelformat=mylabel,textfont=mycaption,name=\jseu@tablename,labelsep=quad}
 \setlength{\abovecaptionskip}{5pt} %图表与正文间距
-\setlength{\belowcaptionskip}{-5pt}
-\setlength{\abovedisplayshortskip}{-5pt} %公式间距
-\setlength{\belowdisplayshortskip}{-5pt}
+\setlength{\belowcaptionskip}{0pt}
+\setlength\intextsep{5pt}
+\setlength\textfloatsep{0pt}
+\setlength\floatsep{5pt}
+\setlength{\abovedisplayshortskip}{0pt} %公式间距
+\setlength{\belowdisplayshortskip}{0pt} 
 
 % ------------------------- 引用与参考文献设置  -----------------------------$
 \RequirePackage[pdfborder={0 0 0},pdfborderstyle={},backref=false,colorlinks=false]{hyperref}
@@ -156,31 +168,30 @@
   \headstyle %首页页眉
   \setcounter{page}{\jseu@startpage}  %设置起始页码
   \hypersetup{ pdfinfo={Title={\jseu@head},Author={\@author},Keywords={\@keywordcn}} }
-  \noindent{\parbox[t][15pt][b]{0.8\textwidth} {\ten DOI: \jseu@DOI}}
-  %设置脚注
   \setlength{\footnotesep}{0pt}
-  \footnote{\jseu@foottext}
-  %--------------------------- 中文文标题区 -----------------------------%
-  \begin{center}
-    \vspace{12pt}{\nineteen\heiti\@title\\}
-    \vspace{12pt}{\thirty \fangsong \@author}
-    \vspace{10pt}{\begin{spacing}{1.0}{\fangsong\nine\@affiliation }\end{spacing} }
-    \vspace{8pt}
-  \end{center}
-  \begingroup\raggedright\leftskip=20pt\rightskip=20pt
-    \noindent\heiti\jseu@abstractcn\fangsong\@abstractcn\\
-    \vspace{2pt}{\heiti\jseu@keywordcn}\@keywordcn\\
-    \heiti\jseu@category\hspace{20pt}\jseu@code\hspace{20pt}\jseu@id\\
+  \noindent\parbox[t][15pt][b]{\textwidth} {\ten DOI: \jseu@DOI}\footnote{\jseu@foottext}   
+  %--------------------------- 中文文标题区 -----------------------------%   
+  \noindent{\centering\parbox[t]{\@titlelen}{\vspace{18pt}\setstretch{1.4}\centering\nineteen\heiti\@title}\par}  
+  \noindent\parbox[t]{\textwidth}{
+	    \vspace{15pt}
+      \centering\thirty\fangsong\@author\par
+      \vspace{8pt}
+      \setstretch{1.0}\centering\fangsong\nine\@affiliation\par
+  }
+  \begingroup\flushleft\leftskip=20pt\rightskip=20pt
+    \vspace{10pt}\noindent\heiti\jseu@abstractcn\fangsong\@abstractcn\par
+    \vspace{2pt}{\heiti\jseu@keywordcn}\@keywordcn\par
+    \heiti\jseu@category\hspace{20pt}\jseu@code\hspace{20pt}\jseu@id\par
   \endgroup
   %--------------------------- 英文标题区 -----------------------------%
-  \begin{center}
-    \vspace{5pt}{\fourteen\bfseries\addfontfeature{LetterSpace=2}\@entitle\\}
-    \vspace{8pt}{\thirty\fangsong\@enauthor}
-    \vspace{6pt}\begin{spacing}{1}{\eight\fangsong\@enaffiliation}\end{spacing}
-    \vspace{4pt}
-  \end{center}
-  \begingroup\raggedright\leftskip=20pt\rightskip=20pt
-    \begin{spacing}{1.06}
+  \noindent{\centering\parbox[t]{\@entitlelen}{\vspace{10pt}\setstretch{1.2}\centering\fourteen\bfseries\addfontfeature{LetterSpace=2}\@entitle}\par}  
+  \noindent\parbox[t]{\textwidth}{
+	    \vspace{8pt}
+      \centering\eleven\fangsong\@enauthor\par
+      \vspace{6pt}\setstretch{1.0}\centering\eight\@enaffiliation\par
+  }
+  \par\begingroup\flushleft\leftskip=20pt\rightskip=20pt
+    \vspace{4pt}\begin{spacing}{1.07}
     \noindent{\bfseries\jseu@abstracten}\ten\addfontfeature{LetterSpace=1}\@abstracten\\
     \noindent{\bfseries\jseu@keyworden}{\parbox[t]{0.8\textwidth}{\@keyworden}}\\
     \end{spacing}

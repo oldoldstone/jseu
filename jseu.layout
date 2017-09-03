@@ -9,12 +9,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
@@ -22,7 +22,7 @@
 #
 
 # Read the definitions from book.layout
-Input article.layout 
+Input article.layout
 
 NoStyle Abstract
 NoStyle LyX-Code
@@ -32,10 +32,10 @@ NoStyle Date
 
 Style Author
   LabelType Static
-  Font 
+  Font
     Color   Blue
-    Size    Normal 
-  EndFont  
+    Size    Normal
+  EndFont
   LabelFont
     Color   Red
     Series  Bold
@@ -53,23 +53,33 @@ Style 作者(英文)
 End
 
 Style Title
-  Font  
-    Size    Larger 
+  Font
+    Size    Larger
     Color   Blue
-  EndFont   
+  EndFont
+  Argument 1
+    Mandatory   0
+    LabelString "长度"
+    Tooltip     "标题最长16.5cm"
+  EndArgument
 End
 
-Style 标题(英文)  
+Style 标题(英文)
   CopyStyle    "Title"
-  Font 
+  Font
     Color   Magenta
-    Size    Large 
-  EndFont  
+    Size    Large
+  EndFont
+  Argument 1
+    Mandatory   0
+    LabelString "长度"
+    Tooltip     "标题最长16.5cm"
+  EndArgument
   LabelFont
     Color   Magenta
     Series  Bold
     Size    Large
-  EndFont  
+  EndFont
   LatexName   entitle
   LabelString   "标题(英文):"
 End
@@ -138,7 +148,7 @@ Style 作者简介
   Align   Block
   Margin    Dynamic
   LatexName authorintro
-  LabelString "作者简介:" 
+  LabelString "作者简介:"
 End
 
 Style 中图分类号
@@ -146,14 +156,14 @@ Style 中图分类号
   Align   Block
   Margin    Dynamic
   LatexName catnum
-  LabelString "中图分类号:" 
+  LabelString "中图分类号:"
 End
- 
+
 Style 文献标识码
-	CopyStyle   "Author"
+  CopyStyle   "Author"
   Align   Block
-  Margin    Dynamic 
-	LatexName	papercode
-  LabelString	"文献标识码:"
+  Margin    Dynamic
+  LatexName papercode
+  LabelString "文献标识码:"
 End
 

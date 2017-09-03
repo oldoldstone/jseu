@@ -89,10 +89,28 @@
 \begin_body
 
 \begin_layout Title
-这是本文的中文标题
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+12cm
+\end_layout
+
+\end_inset
+
+很长的标题可以确定行的宽度，最大宽度16.5cm
 \end_layout
 
 \begin_layout 标题(英文)
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+16.5cm
+\end_layout
+
+\end_inset
+
 This is English Title
 \end_layout
 
@@ -507,9 +525,6 @@ status collapsed
 
 \begin_layout Standard
 这是一个公式
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
 E=mc^{2}
